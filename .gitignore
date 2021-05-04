@@ -1,2 +1,5 @@
 .docker/mongo/data
 .vscode
+.project
+.factorypath
+.classpath
