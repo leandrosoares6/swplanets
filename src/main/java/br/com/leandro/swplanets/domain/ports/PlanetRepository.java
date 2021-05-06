@@ -1,4 +1,4 @@
-package br.com.leandro.swplanets.domain.usecases.ports;
+package br.com.leandro.swplanets.domain.ports;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
 

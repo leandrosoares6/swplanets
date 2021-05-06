@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
-import br.com.leandro.swplanets.domain.usecases.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.PlanetRepository;
 
 public class AddPlanetUnitTest {
   private PlanetRepository planetRepository;

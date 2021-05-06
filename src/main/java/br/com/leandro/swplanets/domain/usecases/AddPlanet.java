@@ -2,7 +2,7 @@ package br.com.leandro.swplanets.domain.usecases;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.PlanetExistsException;
-import br.com.leandro.swplanets.domain.usecases.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.PlanetRepository;
 
 public class AddPlanet {
   private PlanetRepository planetRepository;
