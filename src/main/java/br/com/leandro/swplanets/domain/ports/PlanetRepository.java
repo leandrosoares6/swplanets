@@ -9,5 +9,9 @@ public interface PlanetRepository {
 
   public Planet findById(Long id);
 
+  public Planet findByName(String name);
+
   public List<Planet> findAll(int page, int size);
+
+  public void destroy(Planet planet);
 }
