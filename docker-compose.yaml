@@ -4,6 +4,8 @@ services:
   app:
     build:
       context: .
+    volumes:
+      - m2:/root/.m2
     networks:
       - app-network
     depends_on:
@@ -17,6 +19,9 @@ services:
       - app-network
     volumes:
       - ./.docker/mongo/data:/data/db
+
+volumes:
+  m2: {}
 
 networks:
   app-network:
