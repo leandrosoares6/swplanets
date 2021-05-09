@@ -18,6 +18,7 @@
 	"extensions": [
 		"vscjava.vscode-java-pack",
 		"redhat.vscode-xml",
-		"gabrielbb.vscode-lombok"
+		"gabrielbb.vscode-lombok",
+		"vivaxy.vscode-conventional-commits"
 	]
 }
