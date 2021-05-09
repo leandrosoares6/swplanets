@@ -1,7 +1,7 @@
 package br.com.leandro.swplanets.domain.usecases;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
-import br.com.leandro.swplanets.domain.exceptions.PlanetExistsException;
+import br.com.leandro.swplanets.domain.exceptions.EntityExistsException;
 import br.com.leandro.swplanets.domain.ports.PlanetRepository;
 
 public class AddPlanet {
@@ -15,7 +15,7 @@ public class AddPlanet {
     Planet planetFromDd = planetRepository.findById(planet.getId());
 
     if (planetFromDd != null) {
-      throw new PlanetExistsException();
+      throw new EntityExistsException();
     }
 
     planetRepository.save(planet);
