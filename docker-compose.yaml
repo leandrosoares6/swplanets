@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+  db:
+    build: .docker/mongo
+    ports:
+      - '27117:27017'
+    networks:
+      - app-network
+    volumes:
+      - ./.docker/mongo/data:/data/db
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,23 @@
+{
+	"name": "SwPlanets Spring Boot App",
+
+	"dockerComposeFile": [
+		"../docker-compose.yaml",
+		"docker-compose.yaml"
+	],
+
+	"service": "app",
+
+	"workspaceFolder": "/swplanets",
+
+	"settings": {
+		"java.home": "/docker-java-home",
+		"terminal.integrated.defaultProfile": "linux"
+	},
+
+	"extensions": [
+		"vscjava.vscode-java-pack",
+		"redhat.vscode-xml",
+		"gabrielbb.vscode-lombok"
+	]
+}
