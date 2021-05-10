@@ -13,7 +13,7 @@ public class FindPlanetById {
     this.planetRepository = planetRepository;
   }
 
-  public Planet execute(Long id) {
+  public Planet execute(String id) {
     Optional<Planet> planetFromDd = planetRepository.findById(id);
 
     if (!planetFromDd.isPresent()) {

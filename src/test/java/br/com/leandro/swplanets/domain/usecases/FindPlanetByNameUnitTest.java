@@ -22,7 +22,7 @@ public class FindPlanetByNameUnitTest {
 
   @BeforeEach
   void setUp() {
-    anyPlanet = new Planet((long) 1, "Alderaan", "temperate", "grasslands");
+    anyPlanet = new Planet("Alderaan", "temperate", "grasslands");
     planetRepository = mock(PlanetRepository.class);
     findPlanetByName = new FindPlanetByName(planetRepository);
   }

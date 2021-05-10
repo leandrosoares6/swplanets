@@ -2,6 +2,9 @@ package br.com.leandro.swplanets.domain.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,9 +14,9 @@ class PlanetUnitTest {
   
   @Test
   void shouldCreatePlanetObject_whenPassingValidData() {
-    final Planet planet = new Planet((long) 1, "Tatooine", "arid", "desert");
+    final Planet planet = new Planet("Tatooine", "arid", "desert");
 
-    assertEquals(1, planet.getId());
+    assertTrue(UUID.fromString(planet.getId()) instanceof UUID);
     assertEquals("Tatooine", planet.getName().toString());
     assertEquals("arid", planet.getClimate());
     assertEquals("desert", planet.getTerrain());
@@ -22,7 +25,7 @@ class PlanetUnitTest {
   @Test
   void shouldNotCreatePlanetObject_whenPassingInvalidName() {
     assertThrows(InvalidNameException.class, () -> {
-      new Planet((long) 1, "", "arid", "desert");
+      new Planet("", "arid", "desert");
     });
   }
 }

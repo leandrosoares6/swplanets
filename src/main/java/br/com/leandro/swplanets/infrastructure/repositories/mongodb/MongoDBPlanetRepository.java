@@ -26,7 +26,7 @@ public class MongoDBPlanetRepository implements PlanetRepository {
   }
 
   @Override
-  public Optional<Planet> findById(Long id) {
+  public Optional<Planet> findById(String id) {
     return planetRepository.findById(id);
   }
 

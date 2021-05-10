@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
-public interface SpringDataMongoPlanetRepository extends MongoRepository<Planet, Long> {
+public interface SpringDataMongoPlanetRepository extends MongoRepository<Planet, String> {
   public Planet findByName(Name name);
 }

@@ -1,11 +1,13 @@
 package br.com.leandro.swplanets.domain.entities;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class Planet {
-  private Long id;
+
+  private String id;
   private Name name;
   private String climate;
   private String terrain;
@@ -13,18 +15,18 @@ public class Planet {
   public Planet() {
   }
 
-  public Planet(Long id, String name, String climate, String terrain) {
-    this(id, new Name(name), climate, terrain);
+  public Planet(String name, String climate, String terrain) {
+    this(UUID.randomUUID().toString(), new Name(name), climate, terrain);
   }
 
-  public Planet(Long id, Name name, String climate, String terrain) {
+  private Planet(String id, Name name, String climate, String terrain) {
     this.id = id;
     this.name = name;
     this.climate = climate;
     this.terrain = terrain;
   }
 
-  public Long getId() {
+  public String getId() {
     return id;
   }
 
@@ -67,11 +69,11 @@ public class Planet {
     return this;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
-  public Planet id(Long id) {
+  public Planet id(String id) {
     setId(id);
     return this;
   }

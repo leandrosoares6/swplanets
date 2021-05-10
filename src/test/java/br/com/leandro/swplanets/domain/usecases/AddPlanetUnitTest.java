@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import br.com.leandro.swplanets.application.requests.PlanetRequest;
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.ports.PlanetRepository;
 
@@ -22,10 +23,8 @@ public class AddPlanetUnitTest {
 
   @Test
   void shouldAddPlanet_whenPassingValidData() {
-    Planet planet = new Planet((long) 1, "Alderaan", "temperate", "grasslands");
+    PlanetRequest planet = new PlanetRequest("Alderaan", "temperate", "grasslands");
     addPlanet.execute(planet);
-
-    verify(planetRepository).findById(planet.getId());
     verify(planetRepository).save(any(Planet.class));
   }
 }
