@@ -16,7 +16,7 @@ public class FindPlanetByName {
     Planet planetFromDd = planetRepository.findByName(name);
 
     if (planetFromDd == null) {
-      throw new EntityNotFoundException();
+      throw new EntityNotFoundException("Entity not found.");
     }
 
     return planetFromDd;

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.leandro.swplanets.domain.exceptions.InvalidNameException;
+import br.com.leandro.swplanets.domain.exceptions.DomainException;
 
 class PlanetUnitTest {
   
@@ -24,7 +24,7 @@ class PlanetUnitTest {
 
   @Test
   void shouldNotCreatePlanetObject_whenPassingInvalidName() {
-    assertThrows(InvalidNameException.class, () -> {
+    assertThrows(DomainException.class, () -> {
       new Planet("", "arid", "desert");
     });
   }

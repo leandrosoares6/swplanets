@@ -17,7 +17,7 @@ public class FindPlanetById {
     Optional<Planet> planetFromDd = planetRepository.findById(id);
 
     if (!planetFromDd.isPresent()) {
-      throw new EntityNotFoundException();
+      throw new EntityNotFoundException("Entity not found.");
     }
 
     return planetFromDd.get();
