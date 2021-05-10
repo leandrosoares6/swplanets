@@ -17,6 +17,10 @@ services:
       - '27117:27017'
     networks:
       - app-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=swplanets
     volumes:
       - ./.docker/mongo/data:/data/db
 

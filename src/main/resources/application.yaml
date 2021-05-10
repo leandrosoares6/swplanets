@@ -12,3 +12,4 @@ spring:
       database: ${env.MONGO_DATABASE}
       username: ${env.MONGO_USER}
       password: ${env.MONGO_PASSWORD}
+      authentication-database: admin
