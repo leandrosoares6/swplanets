@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +29,7 @@ public class FindPlanetByIdUnitTest {
 
   @Test
   void shouldGetPlanet_whenSearchedPlanetExists() {
-    when(planetRepository.findById(anyPlanet.getId())).thenReturn(anyPlanet);
+    when(planetRepository.findById(anyPlanet.getId())).thenReturn(Optional.of(anyPlanet));
     Planet result = findPlanetById.execute(anyPlanet.getId());
     assertEquals(anyPlanet, result);
   }

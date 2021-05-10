@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
+import br.com.leandro.swplanets.domain.exceptions.InvalidNameException;
 import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class FindPlanetByNameUnitTest {
   private static final String INVALID_NAME = "";
@@ -27,15 +29,23 @@ public class FindPlanetByNameUnitTest {
 
   @Test
   void shouldGetPlanet_whenSearchedPlanetExists() {
-    when(planetRepository.findByName("Alderaan")).thenReturn(anyPlanet);
-    Planet result = findPlanetByName.execute("Alderaan");
+    Name name = new Name("Alderaan");
+    when(planetRepository.findByName(name)).thenReturn(anyPlanet);
+    Planet result = findPlanetByName.execute(name);
     assertEquals(anyPlanet, result);
   }
 
   @Test
   void shouldThrowException_whenSearchedPlanetNotExists() {
     assertThrows(EntityNotFoundException.class, () -> {
-      findPlanetByName.execute(INVALID_NAME);
+      findPlanetByName.execute(new Name("INVALID_PLANET"));
+    });
+  }
+
+  @Test
+  void shouldThrowException_whenPassingInvalidName() {
+    assertThrows(InvalidNameException.class, () -> {
+      findPlanetByName.execute(new Name(INVALID_NAME));
     });
   }
 }

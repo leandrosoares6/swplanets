@@ -1,5 +1,7 @@
 package br.com.leandro.swplanets.domain.usecases;
 
+import java.util.Optional;
+
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
 import br.com.leandro.swplanets.domain.ports.PlanetRepository;
@@ -12,12 +14,12 @@ public class FindPlanetById {
   }
 
   public Planet execute(Long id) {
-    Planet planetFromDd = planetRepository.findById(id);
+    Optional<Planet> planetFromDd = planetRepository.findById(id);
 
-    if (planetFromDd == null) {
+    if (!planetFromDd.isPresent()) {
       throw new EntityNotFoundException();
     }
 
-    return planetFromDd;
+    return planetFromDd.get();
   }
 }
