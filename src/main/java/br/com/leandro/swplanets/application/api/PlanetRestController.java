@@ -61,7 +61,7 @@ public class PlanetRestController {
 	public ResponseEntity<PlanetResponse> show(@PathVariable String id) {
 		try {
       FindPlanetById findById = new FindPlanetById(planetRepository);
-			PlanetResponse planet = findById.execute(id);
+			PlanetResponse planet = new PlanetResponse(findById.execute(id));
 			return ResponseEntity.ok(planet);
 		} catch (Exception e) {
 			return ResponseEntity.notFound().build();
