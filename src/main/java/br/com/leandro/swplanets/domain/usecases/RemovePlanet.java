@@ -2,25 +2,24 @@ package br.com.leandro.swplanets.domain.usecases;
 
 import java.util.Optional;
 
-import br.com.leandro.swplanets.application.responses.PlanetResponse;
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
 import br.com.leandro.swplanets.domain.ports.PlanetRepository;
 
-public class FindPlanetById {
+public class RemovePlanet {
   private PlanetRepository planetRepository;
 
-  public FindPlanetById(PlanetRepository planetRepository) {
+  public RemovePlanet(PlanetRepository planetRepository) {
     this.planetRepository = planetRepository;
   }
 
-  public PlanetResponse execute(String id) {
+  public void execute(String id) {
     Optional<Planet> planetFromDd = planetRepository.findById(id);
 
     if (!planetFromDd.isPresent()) {
       throw new EntityNotFoundException("Entity not found.");
     }
 
-    return new PlanetResponse(planetFromDd.get());
+    planetRepository.destroy(planetFromDd.get());
   }
 }

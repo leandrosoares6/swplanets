@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
@@ -37,7 +39,9 @@ public class MongoDBPlanetRepository implements PlanetRepository {
 
   @Override
   public List<Planet> findAll(int page, int size) {
-    return planetRepository.findAll();
+    PageRequest paging = PageRequest.of(page, size);
+    Page<Planet> pagePlanets = planetRepository.findAll(paging);
+    return pagePlanets.getContent();
   }
 
   @Override
