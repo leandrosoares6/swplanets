@@ -1,11 +1,16 @@
 package br.com.leandro.swplanets.application.requests;
 
+import javax.validation.constraints.NotBlank;
+
 public class PlanetRequest {
 
+  @NotBlank
   private String name;
 
+  @NotBlank
   private String climate;
 
+  @NotBlank
   private String terrain;
 
   public PlanetRequest(String name, String climate, String terrain) {
