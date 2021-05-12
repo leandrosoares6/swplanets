@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.leandro.swplanets.application.responses.PlanetResponse;
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
 import br.com.leandro.swplanets.domain.ports.PlanetRepository;
@@ -31,11 +30,8 @@ public class FindPlanetByIdUnitTest {
   @Test
   void shouldGetPlanet_whenSearchedPlanetExists() {
     when(planetRepository.findById(anyPlanet.getId())).thenReturn(Optional.of(anyPlanet));
-    PlanetResponse result = findPlanetById.execute(anyPlanet.getId());
-    assertEquals(anyPlanet.getId(), result.getId());
-    assertEquals(anyPlanet.getName().toString(), result.getName());
-    assertEquals(anyPlanet.getClimate().toString(), result.getClimate());
-    assertEquals(anyPlanet.getTerrain().toString(), result.getTerrain());
+    Planet result = findPlanetById.execute(anyPlanet.getId());
+    assertEquals(result, anyPlanet);
   }
 
   @Test
