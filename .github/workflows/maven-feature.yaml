@@ -4,7 +4,7 @@ name: Feature Branch
 on:
   push:
     branches-ignore:
-      - 'master'
+      - 'main'
       - 'release*'
 
 jobs:
