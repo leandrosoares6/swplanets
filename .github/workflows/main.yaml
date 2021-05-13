@@ -11,4 +11,4 @@ jobs:
       - name: Build the stack
         run: docker-compose up -d
       - name: Test
-        run: docker exec swplanets_app_1 bash mvn -B clean verify
+        run: docker exec swplanets_app_1 bash mvn test
