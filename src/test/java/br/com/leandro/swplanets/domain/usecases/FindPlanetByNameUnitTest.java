@@ -11,19 +11,19 @@ import org.junit.jupiter.api.Test;
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
 import br.com.leandro.swplanets.domain.exceptions.DomainException;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class FindPlanetByNameUnitTest {
   private static final String INVALID_NAME = "";
   private Planet anyPlanet;
-  private PlanetRepository planetRepository;
+  private IPlanetRepository planetRepository;
   private FindPlanetByName findPlanetByName;
 
   @BeforeEach
   void setUp() {
     anyPlanet = new Planet("Alderaan", "temperate", "grasslands");
-    planetRepository = mock(PlanetRepository.class);
+    planetRepository = mock(IPlanetRepository.class);
     findPlanetByName = new FindPlanetByName(planetRepository);
   }
 

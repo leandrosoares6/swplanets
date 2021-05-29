@@ -6,7 +6,7 @@ import java.util.Optional;
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
-public interface PlanetRepository {
+public interface IPlanetRepository {
   public void save(Planet planet);
 
   public Optional<Planet> findById(String id);

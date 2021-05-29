@@ -12,18 +12,18 @@ import org.junit.jupiter.api.Test;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 
 public class FindPlanetByIdUnitTest {
   private static final String INVALID_ID = "";
   private Planet anyPlanet;
-  private PlanetRepository planetRepository;
+  private IPlanetRepository planetRepository;
   private FindPlanetById findPlanetById;
 
   @BeforeEach
   void setUp() {
     anyPlanet = new Planet("Alderaan", "temperate", "grasslands");
-    planetRepository = mock(PlanetRepository.class);
+    planetRepository = mock(IPlanetRepository.class);
     findPlanetById = new FindPlanetById(planetRepository);
   }
 

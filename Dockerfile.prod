@@ -1,5 +1,5 @@
 # Build Stage for Spring boot application image
-FROM openjdk:11-jdk-alpine as build
+FROM openjdk:11 as build
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ RUN ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 # Production Stage for Spring boot application image
-FROM openjdk:11-jre-alpine as production
+FROM openjdk:11.0.7-jre-slim-buster as production
 ARG DEPENDENCY=/app/target/dependency
 
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib

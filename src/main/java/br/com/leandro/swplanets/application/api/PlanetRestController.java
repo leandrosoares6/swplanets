@@ -1,10 +1,6 @@
 package br.com.leandro.swplanets.application.api;
 
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
@@ -16,17 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.leandro.swplanets.application.requests.PlanetRequest;
 import br.com.leandro.swplanets.application.responses.PlanetResponse;
-import br.com.leandro.swplanets.domain.entities.Planet;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.usecases.AddPlanet;
 import br.com.leandro.swplanets.domain.usecases.FindPlanetById;
-import br.com.leandro.swplanets.domain.usecases.ListPlanets;
 import br.com.leandro.swplanets.domain.usecases.RemovePlanet;
 
 @RestController
@@ -34,18 +27,7 @@ import br.com.leandro.swplanets.domain.usecases.RemovePlanet;
 public class PlanetRestController {
 
   @Autowired
-  private PlanetRepository planetRepository;
-
-  @GetMapping
-  public List<PlanetResponse> index(@RequestParam(name = "page") Optional<Integer> page,
-      @RequestParam(name = "size") Optional<Integer> size) {
-    ListPlanets listPlanets = new ListPlanets(planetRepository);
-    List<Planet> planets = listPlanets.execute(page, size);
-    Stream<PlanetResponse> planetsResponse = planets
-      .stream()
-      .map(planet -> new PlanetResponse(planet));
-    return planetsResponse.collect(Collectors.toList());
-  }
+  private IPlanetRepository planetRepository;
 
   @PostMapping
   public ResponseEntity<String> create(@Valid @RequestBody PlanetRequest request) {

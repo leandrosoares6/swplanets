@@ -4,12 +4,12 @@ import java.util.Optional;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 
 public class FindPlanetById {
-  private PlanetRepository planetRepository;
+  private IPlanetRepository planetRepository;
 
-  public FindPlanetById(PlanetRepository planetRepository) {
+  public FindPlanetById(IPlanetRepository planetRepository) {
     this.planetRepository = planetRepository;
   }
 

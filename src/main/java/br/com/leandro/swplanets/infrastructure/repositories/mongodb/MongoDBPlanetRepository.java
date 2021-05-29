@@ -9,16 +9,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 @Component
-public class MongoDBPlanetRepository implements PlanetRepository {
+public class MongoDBPlanetRepository implements IPlanetRepository {
 
-  private final SpringDataMongoPlanetRepository planetRepository;
+  private final ISpringDataMongoPlanetRepository planetRepository;
 
   @Autowired
-  public MongoDBPlanetRepository(final SpringDataMongoPlanetRepository planetRepository) {
+  public MongoDBPlanetRepository(final ISpringDataMongoPlanetRepository planetRepository) {
     this.planetRepository = planetRepository;
   }
 
@@ -48,5 +48,4 @@ public class MongoDBPlanetRepository implements PlanetRepository {
   public void destroy(Planet planet) {
     planetRepository.delete(planet);
   }
-
 }

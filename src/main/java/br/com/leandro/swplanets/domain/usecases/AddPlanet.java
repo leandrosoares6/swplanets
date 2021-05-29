@@ -3,13 +3,13 @@ package br.com.leandro.swplanets.domain.usecases;
 import br.com.leandro.swplanets.application.requests.PlanetRequest;
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityExistsException;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class AddPlanet {
-  private PlanetRepository planetRepository;
+  private IPlanetRepository planetRepository;
 
-  public AddPlanet(PlanetRepository planetRepository) {
+  public AddPlanet(IPlanetRepository planetRepository) {
     this.planetRepository = planetRepository;
   }
 

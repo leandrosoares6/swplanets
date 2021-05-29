@@ -2,13 +2,13 @@ package br.com.leandro.swplanets.domain.usecases;
 
 import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class FindPlanetByName {
-  private PlanetRepository planetRepository;
+  private IPlanetRepository planetRepository;
 
-  public FindPlanetByName(PlanetRepository planetRepository) {
+  public FindPlanetByName(IPlanetRepository planetRepository) {
     this.planetRepository = planetRepository;
   }
 

@@ -9,15 +9,15 @@ import org.junit.jupiter.api.Test;
 
 import br.com.leandro.swplanets.application.requests.PlanetRequest;
 import br.com.leandro.swplanets.domain.entities.Planet;
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 
 public class AddPlanetUnitTest {
-  private PlanetRepository planetRepository;
+  private IPlanetRepository planetRepository;
   private AddPlanet addPlanet;
 
   @BeforeEach
   void setUp() {
-    planetRepository = mock(PlanetRepository.class);
+    planetRepository = mock(IPlanetRepository.class);
     addPlanet = new AddPlanet(planetRepository);
   }
 

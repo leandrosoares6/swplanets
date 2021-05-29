@@ -8,16 +8,18 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.leandro.swplanets.domain.ports.PlanetRepository;
+import br.com.leandro.swplanets.application.viewmodels.IListPlanetsViewModel;
+import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 
 public class ListPlanetsUnitTest {
-  private PlanetRepository planetRepository;
+  private IPlanetRepository planetRepository;
   private ListPlanets listPlanets;
 
   @BeforeEach
   void setUp() {
-    planetRepository = mock(PlanetRepository.class);
-    listPlanets = new ListPlanets(planetRepository);
+    planetRepository = mock(IPlanetRepository.class);
+    IListPlanetsViewModel viewModel = mock(IListPlanetsViewModel.class);
+    listPlanets = new ListPlanets(planetRepository, viewModel);
   }
 
   @Test
