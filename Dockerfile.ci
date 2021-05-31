@@ -3,13 +3,14 @@ FROM maven:3.8.1-jdk-11
 
 WORKDIR /app
 
-COPY pom.xml /app
+COPY pom.xml ./
 RUN mvn dependency:go-offline
 RUN mvn spring-javaformat:help
 
-COPY . /app/
+COPY . ./
 RUN mvn package
 
-COPY /app/target/*.jar /app/swplanets.jar
+ARG JAR_FILE=
+COPY ${JAR_FILE} ./swplanets.jar
 CMD ["java", "-jar", "/app/swplanets.jar"]
 
