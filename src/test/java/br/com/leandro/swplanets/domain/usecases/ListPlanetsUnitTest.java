@@ -12,19 +12,22 @@ import br.com.leandro.swplanets.application.viewmodels.IListPlanetsViewModel;
 import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 
 public class ListPlanetsUnitTest {
-  private IPlanetRepository planetRepository;
-  private ListPlanets listPlanets;
 
-  @BeforeEach
-  void setUp() {
-    planetRepository = mock(IPlanetRepository.class);
-    IListPlanetsViewModel viewModel = mock(IListPlanetsViewModel.class);
-    listPlanets = new ListPlanets(planetRepository, viewModel);
-  }
+	private IPlanetRepository planetRepository;
 
-  @Test
-  void shouldListAllPlanets() {
-    listPlanets.execute(Optional.of(1), Optional.of(10));
-    verify(planetRepository).findAll(1, 10);
-  }
+	private ListPlanets listPlanets;
+
+	@BeforeEach
+	void setUp() {
+		planetRepository = mock(IPlanetRepository.class);
+		IListPlanetsViewModel viewModel = mock(IListPlanetsViewModel.class);
+		listPlanets = new ListPlanets(planetRepository, viewModel);
+	}
+
+	@Test
+	void shouldListAllPlanets() {
+		listPlanets.execute(Optional.of(1), Optional.of(10));
+		verify(planetRepository).findAll(1, 10);
+	}
+
 }

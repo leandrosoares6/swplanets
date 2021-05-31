@@ -15,37 +15,42 @@ import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class FindPlanetByNameUnitTest {
-  private static final String INVALID_NAME = "";
-  private Planet anyPlanet;
-  private IPlanetRepository planetRepository;
-  private FindPlanetByName findPlanetByName;
 
-  @BeforeEach
-  void setUp() {
-    anyPlanet = new Planet("Alderaan", "temperate", "grasslands");
-    planetRepository = mock(IPlanetRepository.class);
-    findPlanetByName = new FindPlanetByName(planetRepository);
-  }
+	private static final String INVALID_NAME = "";
 
-  @Test
-  void shouldGetPlanet_whenSearchedPlanetExists() {
-    Name name = new Name("Alderaan");
-    when(planetRepository.findByName(name)).thenReturn(anyPlanet);
-    Planet result = findPlanetByName.execute(name);
-    assertEquals(anyPlanet, result);
-  }
+	private Planet anyPlanet;
 
-  @Test
-  void shouldThrowException_whenSearchedPlanetNotExists() {
-    assertThrows(EntityNotFoundException.class, () -> {
-      findPlanetByName.execute(new Name("INVALID_PLANET"));
-    });
-  }
+	private IPlanetRepository planetRepository;
 
-  @Test
-  void shouldThrowException_whenPassingInvalidName() {
-    assertThrows(DomainException.class, () -> {
-      findPlanetByName.execute(new Name(INVALID_NAME));
-    });
-  }
+	private FindPlanetByName findPlanetByName;
+
+	@BeforeEach
+	void setUp() {
+		anyPlanet = new Planet("Alderaan", "temperate", "grasslands");
+		planetRepository = mock(IPlanetRepository.class);
+		findPlanetByName = new FindPlanetByName(planetRepository);
+	}
+
+	@Test
+	void shouldGetPlanet_whenSearchedPlanetExists() {
+		Name name = new Name("Alderaan");
+		when(planetRepository.findByName(name)).thenReturn(anyPlanet);
+		Planet result = findPlanetByName.execute(name);
+		assertEquals(anyPlanet, result);
+	}
+
+	@Test
+	void shouldThrowException_whenSearchedPlanetNotExists() {
+		assertThrows(EntityNotFoundException.class, () -> {
+			findPlanetByName.execute(new Name("INVALID_PLANET"));
+		});
+	}
+
+	@Test
+	void shouldThrowException_whenPassingInvalidName() {
+		assertThrows(DomainException.class, () -> {
+			findPlanetByName.execute(new Name(INVALID_NAME));
+		});
+	}
+
 }

@@ -21,43 +21,41 @@ import br.com.leandro.swplanets.domain.exceptions.DomainException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
-  @Autowired
-  private MessageSource messageSource;
 
-  @ExceptionHandler(DomainException.class)
-  public ResponseEntity<Object> HandleDomainException(DomainException error, WebRequest request) {
-    var status = HttpStatus.BAD_REQUEST;
+	@Autowired
+	private MessageSource messageSource;
 
-    var appException = new AppException();
-    appException.setStatus(status.value());
-    appException.setTitle(error.getMessage());
-    appException.setDateTime(LocalDateTime.now());
+	@ExceptionHandler(DomainException.class)
+	public ResponseEntity<Object> HandleDomainException(DomainException error, WebRequest request) {
+		var status = HttpStatus.BAD_REQUEST;
 
-    return handleExceptionInternal(error, appException, new HttpHeaders(), status, request);
-  }
+		var appException = new AppException();
+		appException.setStatus(status.value());
+		appException.setTitle(error.getMessage());
+		appException.setDateTime(LocalDateTime.now());
 
-  @Override
-  protected ResponseEntity<Object> handleMethodArgumentNotValid(
-    MethodArgumentNotValidException ex,
-    HttpHeaders headers,
-    HttpStatus status,
-    WebRequest request
-  ) {
-    var fields = new ArrayList<AppException.Field>();
+		return handleExceptionInternal(error, appException, new HttpHeaders(), status, request);
+	}
 
-    for (ObjectError error : ex.getBindingResult().getAllErrors()) {
-      String name = ((FieldError) error).getField();
-      String message = messageSource.getMessage(error, LocaleContextHolder.getLocale());
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		var fields = new ArrayList<AppException.Field>();
 
-      fields.add(new AppException.Field(name, message));
-    }
+		for (ObjectError error : ex.getBindingResult().getAllErrors()) {
+			String name = ((FieldError) error).getField();
+			String message = messageSource.getMessage(error, LocaleContextHolder.getLocale());
 
-    var appException = new AppException();
-    appException.setStatus(status.value());
-    appException.setTitle("One or more fields are invalid");
-    appException.setDateTime(LocalDateTime.now());
-    appException.setFields(fields);
+			fields.add(new AppException.Field(name, message));
+		}
 
-    return super.handleExceptionInternal(ex, appException, headers, status, request);
-  }
+		var appException = new AppException();
+		appException.setStatus(status.value());
+		appException.setTitle("One or more fields are invalid");
+		appException.setDateTime(LocalDateTime.now());
+		appException.setFields(fields);
+
+		return super.handleExceptionInternal(ex, appException, headers, status, request);
+	}
+
 }

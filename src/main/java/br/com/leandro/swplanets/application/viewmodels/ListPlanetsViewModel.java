@@ -12,10 +12,10 @@ import br.com.leandro.swplanets.domain.entities.Planet;
 @Component
 public class ListPlanetsViewModel implements IListPlanetsViewModel {
 
-  @Override
-  public List<PlanetResponse> presentPlanets(List<Planet> planets) {
-    Stream<PlanetResponse> planetsResponse = planets.stream()
-      .map(planet -> new PlanetResponse(planet));
-    return planetsResponse.collect(Collectors.toList());
-  }
+	@Override
+	public List<PlanetResponse> presentPlanets(List<Planet> planets) {
+		Stream<PlanetResponse> planetsResponse = planets.stream().map(planet -> new PlanetResponse(planet));
+		return planetsResponse.collect(Collectors.toList());
+	}
+
 }

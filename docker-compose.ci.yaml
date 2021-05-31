@@ -4,10 +4,8 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.ci
     container_name: swplanets_app
-    volumes:
-      - m2:/root/.m2
     networks:
       - app-network
     depends_on:
@@ -21,11 +19,6 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
       - MONGO_INITDB_DATABASE=swplanets
-    volumes:
-      - ./.docker/mongo/data:/data/db
-
-volumes:
-  m2: {}
 
 networks:
   app-network:

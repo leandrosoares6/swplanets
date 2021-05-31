@@ -26,26 +26,26 @@ import br.com.leandro.swplanets.domain.usecases.RemovePlanet;
 @RequestMapping("/planets")
 public class PlanetRestController {
 
-  @Autowired
-  private IPlanetRepository planetRepository;
+	@Autowired
+	private IPlanetRepository planetRepository;
 
-  @PostMapping
-  public ResponseEntity<String> create(@Valid @RequestBody PlanetRequest request) {
-    AddPlanet addPlanet = new AddPlanet(planetRepository);
-    String id = addPlanet.execute(request);
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-			.path("/{id}").buildAndExpand(id).toUri();
+	@PostMapping
+	public ResponseEntity<String> create(@Valid @RequestBody PlanetRequest request) {
+		AddPlanet addPlanet = new AddPlanet(planetRepository);
+		String id = addPlanet.execute(request);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
-			return ResponseEntity.created(uri).build();
-  }
+		return ResponseEntity.created(uri).build();
+	}
 
-  @GetMapping("/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<PlanetResponse> show(@PathVariable String id) {
 		try {
-      FindPlanetById findById = new FindPlanetById(planetRepository);
+			FindPlanetById findById = new FindPlanetById(planetRepository);
 			PlanetResponse planet = new PlanetResponse(findById.execute(id));
 			return ResponseEntity.ok(planet);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
@@ -54,10 +54,12 @@ public class PlanetRestController {
 	public ResponseEntity<Void> delete(@PathVariable String id) {
 		try {
 			RemovePlanet removePlanet = new RemovePlanet(planetRepository);
-      removePlanet.execute(id);
+			removePlanet.execute(id);
 			return ResponseEntity.noContent().build();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
+
 }

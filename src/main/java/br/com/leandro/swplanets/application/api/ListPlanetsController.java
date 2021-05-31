@@ -17,16 +17,18 @@ import br.com.leandro.swplanets.domain.usecases.ListPlanets;
 @RestController
 @RequestMapping("/planets")
 public class ListPlanetsController {
-  @Autowired
-  private IPlanetRepository planetRepository;
 
-  @Autowired
-  private IListPlanetsViewModel viewModel;
+	@Autowired
+	private IPlanetRepository planetRepository;
 
-  @GetMapping
-  public List<PlanetResponse> index(@RequestParam(name = "page") Optional<Integer> page,
-      @RequestParam(name = "size") Optional<Integer> size) {
-    ListPlanets listPlanets = new ListPlanets(planetRepository, viewModel);
-    return listPlanets.execute(page, size);
-  }
+	@Autowired
+	private IListPlanetsViewModel viewModel;
+
+	@GetMapping
+	public List<PlanetResponse> index(@RequestParam(name = "page") Optional<Integer> page,
+			@RequestParam(name = "size") Optional<Integer> size) {
+		ListPlanets listPlanets = new ListPlanets(planetRepository, viewModel);
+		return listPlanets.execute(page, size);
+	}
+
 }

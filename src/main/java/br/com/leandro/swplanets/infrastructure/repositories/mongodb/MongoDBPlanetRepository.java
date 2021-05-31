@@ -15,37 +15,38 @@ import br.com.leandro.swplanets.domain.valueobjects.Name;
 @Component
 public class MongoDBPlanetRepository implements IPlanetRepository {
 
-  private final ISpringDataMongoPlanetRepository planetRepository;
+	private final ISpringDataMongoPlanetRepository planetRepository;
 
-  @Autowired
-  public MongoDBPlanetRepository(final ISpringDataMongoPlanetRepository planetRepository) {
-    this.planetRepository = planetRepository;
-  }
+	@Autowired
+	public MongoDBPlanetRepository(final ISpringDataMongoPlanetRepository planetRepository) {
+		this.planetRepository = planetRepository;
+	}
 
-  @Override
-  public void save(Planet planet) {
-    planetRepository.save(planet);
-  }
+	@Override
+	public void save(Planet planet) {
+		planetRepository.save(planet);
+	}
 
-  @Override
-  public Optional<Planet> findById(String id) {
-    return planetRepository.findById(id);
-  }
+	@Override
+	public Optional<Planet> findById(String id) {
+		return planetRepository.findById(id);
+	}
 
-  @Override
-  public Planet findByName(Name name) {
-    return planetRepository.findByName(name);
-  }
+	@Override
+	public Planet findByName(Name name) {
+		return planetRepository.findByName(name);
+	}
 
-  @Override
-  public List<Planet> findAll(int page, int size) {
-    PageRequest paging = PageRequest.of(page, size);
-    Page<Planet> pagePlanets = planetRepository.findAll(paging);
-    return pagePlanets.getContent();
-  }
+	@Override
+	public List<Planet> findAll(int page, int size) {
+		PageRequest paging = PageRequest.of(page, size);
+		Page<Planet> pagePlanets = planetRepository.findAll(paging);
+		return pagePlanets.getContent();
+	}
 
-  @Override
-  public void destroy(Planet planet) {
-    planetRepository.delete(planet);
-  }
+	@Override
+	public void destroy(Planet planet) {
+		planetRepository.delete(planet);
+	}
+
 }

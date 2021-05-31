@@ -7,28 +7,25 @@ import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class AddPlanet {
-  private IPlanetRepository planetRepository;
 
-  public AddPlanet(IPlanetRepository planetRepository) {
-    this.planetRepository = planetRepository;
-  }
+	private IPlanetRepository planetRepository;
 
-  public String execute(PlanetRequest planetRequest) {
-    Planet planetFromDd = planetRepository
-      .findByName(new Name(planetRequest.getName()));
+	public AddPlanet(IPlanetRepository planetRepository) {
+		this.planetRepository = planetRepository;
+	}
 
-    if (planetFromDd != null) {
-      throw new EntityExistsException("Entity already exists.");
-    }
+	public String execute(PlanetRequest planetRequest) {
+		Planet planetFromDd = planetRepository.findByName(new Name(planetRequest.getName()));
 
-    Planet planet = new Planet(
-      planetRequest.getName(),
-      planetRequest.getClimate(),
-      planetRequest.getTerrain()
-    );
+		if (planetFromDd != null) {
+			throw new EntityExistsException("Entity already exists.");
+		}
 
-    planetRepository.save(planet);
+		Planet planet = new Planet(planetRequest.getName(), planetRequest.getClimate(), planetRequest.getTerrain());
 
-    return planet.getId();
-  }
+		planetRepository.save(planet);
+
+		return planet.getId();
+	}
+
 }

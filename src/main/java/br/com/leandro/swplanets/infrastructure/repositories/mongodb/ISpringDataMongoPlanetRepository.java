@@ -8,5 +8,7 @@ import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 @Repository
 public interface ISpringDataMongoPlanetRepository extends MongoRepository<Planet, String> {
-  public Planet findByName(Name name);
+
+	public Planet findByName(Name name);
+
 }

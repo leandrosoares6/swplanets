@@ -13,6 +13,6 @@ public class SwplanetsApplication {
 	}
 
 	@Autowired
-    public ConfigurableApplicationContext context;
+	public ConfigurableApplicationContext context;
 
 }

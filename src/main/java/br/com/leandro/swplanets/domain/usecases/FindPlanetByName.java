@@ -6,19 +6,21 @@ import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public class FindPlanetByName {
-  private IPlanetRepository planetRepository;
 
-  public FindPlanetByName(IPlanetRepository planetRepository) {
-    this.planetRepository = planetRepository;
-  }
+	private IPlanetRepository planetRepository;
 
-  public Planet execute(Name name) {
-    Planet planetFromDd = planetRepository.findByName(name);
+	public FindPlanetByName(IPlanetRepository planetRepository) {
+		this.planetRepository = planetRepository;
+	}
 
-    if (planetFromDd == null) {
-      throw new EntityNotFoundException("Entity not found.");
-    }
+	public Planet execute(Name name) {
+		Planet planetFromDd = planetRepository.findByName(name);
 
-    return planetFromDd;
-  }
+		if (planetFromDd == null) {
+			throw new EntityNotFoundException("Entity not found.");
+		}
+
+		return planetFromDd;
+	}
+
 }

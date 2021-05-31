@@ -15,29 +15,34 @@ import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
 import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 
 public class FindPlanetByIdUnitTest {
-  private static final String INVALID_ID = "";
-  private Planet anyPlanet;
-  private IPlanetRepository planetRepository;
-  private FindPlanetById findPlanetById;
 
-  @BeforeEach
-  void setUp() {
-    anyPlanet = new Planet("Alderaan", "temperate", "grasslands");
-    planetRepository = mock(IPlanetRepository.class);
-    findPlanetById = new FindPlanetById(planetRepository);
-  }
+	private static final String INVALID_ID = "";
 
-  @Test
-  void shouldGetPlanet_whenSearchedPlanetExists() {
-    when(planetRepository.findById(anyPlanet.getId())).thenReturn(Optional.of(anyPlanet));
-    Planet result = findPlanetById.execute(anyPlanet.getId());
-    assertEquals(result, anyPlanet);
-  }
+	private Planet anyPlanet;
 
-  @Test
-  void shouldThrowException_whenSearchedPlanetNotExists() {
-    assertThrows(EntityNotFoundException.class, () -> {
-      findPlanetById.execute(INVALID_ID);
-    });
-  }
+	private IPlanetRepository planetRepository;
+
+	private FindPlanetById findPlanetById;
+
+	@BeforeEach
+	void setUp() {
+		anyPlanet = new Planet("Alderaan", "temperate", "grasslands");
+		planetRepository = mock(IPlanetRepository.class);
+		findPlanetById = new FindPlanetById(planetRepository);
+	}
+
+	@Test
+	void shouldGetPlanet_whenSearchedPlanetExists() {
+		when(planetRepository.findById(anyPlanet.getId())).thenReturn(Optional.of(anyPlanet));
+		Planet result = findPlanetById.execute(anyPlanet.getId());
+		assertEquals(result, anyPlanet);
+	}
+
+	@Test
+	void shouldThrowException_whenSearchedPlanetNotExists() {
+		assertThrows(EntityNotFoundException.class, () -> {
+			findPlanetById.execute(INVALID_ID);
+		});
+	}
+
 }

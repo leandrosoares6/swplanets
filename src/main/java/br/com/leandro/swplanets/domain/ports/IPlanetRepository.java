@@ -7,13 +7,15 @@ import br.com.leandro.swplanets.domain.entities.Planet;
 import br.com.leandro.swplanets.domain.valueobjects.Name;
 
 public interface IPlanetRepository {
-  public void save(Planet planet);
 
-  public Optional<Planet> findById(String id);
+	public void save(Planet planet);
 
-  public Planet findByName(Name name);
+	public Optional<Planet> findById(String id);
 
-  public List<Planet> findAll(int page, int size);
+	public Planet findByName(Name name);
 
-  public void destroy(Planet planet);
+	public List<Planet> findAll(int page, int size);
+
+	public void destroy(Planet planet);
+
 }

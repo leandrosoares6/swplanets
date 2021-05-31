@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose up -d
+        run: docker-compose -f docker-compose.ci.yaml up -d
       - name: Test
-        run: docker exec swplanets_app_1 bash mvn test
+        run: docker-compose exec app mvn test

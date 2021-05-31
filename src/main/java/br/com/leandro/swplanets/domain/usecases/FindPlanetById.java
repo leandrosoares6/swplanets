@@ -7,19 +7,21 @@ import br.com.leandro.swplanets.domain.exceptions.EntityNotFoundException;
 import br.com.leandro.swplanets.domain.ports.IPlanetRepository;
 
 public class FindPlanetById {
-  private IPlanetRepository planetRepository;
 
-  public FindPlanetById(IPlanetRepository planetRepository) {
-    this.planetRepository = planetRepository;
-  }
+	private IPlanetRepository planetRepository;
 
-  public Planet execute(String id) {
-    Optional<Planet> planetFromDd = planetRepository.findById(id);
+	public FindPlanetById(IPlanetRepository planetRepository) {
+		this.planetRepository = planetRepository;
+	}
 
-    if (!planetFromDd.isPresent()) {
-      throw new EntityNotFoundException("Entity not found.");
-    }
+	public Planet execute(String id) {
+		Optional<Planet> planetFromDd = planetRepository.findById(id);
 
-    return planetFromDd.get();
-  }
+		if (!planetFromDd.isPresent()) {
+			throw new EntityNotFoundException("Entity not found.");
+		}
+
+		return planetFromDd.get();
+	}
+
 }
