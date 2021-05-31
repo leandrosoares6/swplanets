@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile.ci
     container_name: swplanets_app
-    tty: true
     networks:
       - app-network
     depends_on:
