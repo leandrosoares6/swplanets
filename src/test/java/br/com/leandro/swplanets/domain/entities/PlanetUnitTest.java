@@ -19,7 +19,8 @@ class PlanetUnitTest {
 		assertTrue(UUID.fromString(planet.getId()) instanceof UUID);
 		assertEquals("Tatooine", planet.getName().toString());
 		assertEquals("arid", planet.getClimate());
-		assertEquals("desert", planet.getTerrain());
+		assertEquals("desertt", planet.getTerrain());
+		// assertEquals("desert", planet.getTerrain());
 	}
 
 	@Test
