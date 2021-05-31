@@ -10,7 +10,6 @@ RUN mvn spring-javaformat:help
 COPY . ./
 RUN mvn package
 
-ARG JAR_FILE=
-COPY ${JAR_FILE} ./swplanets.jar
+COPY ./target/*.jar ./swplanets.jar
 CMD ["java", "-jar", "/app/swplanets.jar"]
 
