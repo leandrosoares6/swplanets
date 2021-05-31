@@ -1,6 +1,6 @@
 .docker/mongo/data
 HELP.md
-target/
+/target/*
 !**/src/main/**/target/
 !**/src/test/**/target/
 
